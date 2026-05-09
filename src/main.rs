@@ -23,4 +23,11 @@ fn main() {
     println!("RIP: 0x{:x}", regs.rip);
     println!("RSP: 0x{:x}", regs.rsp);
     println!("RAX: 0x{:x}", regs.rax);
+
+    nix::sys::ptrace::detach(
+        nix::unistd::Pid::from_raw(pid_i32),
+        None
+    ).unwrap();
+
+    println!("Detached.");
 }
